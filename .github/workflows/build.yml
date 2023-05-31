@@ -5,6 +5,8 @@ on:
         branches:
             - main
 
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
 jobs:
     build:
         name: Build
@@ -21,7 +23,19 @@ jobs:
               with:
                   run_install: true
 
-            - name: Build All
+            - name: Create Release Pull Request or Publish to NPM
+              id: changesets
+              uses: changesets/action@v1
+              with:
+                  publish: pnpm changeset publish
+                  version: pnpm changeset version
+                  title: Release Packages
+                  commit: bump versions
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+            - name: Build
               run: pnpm build
 
             - name: Remove dist from .gitignore
