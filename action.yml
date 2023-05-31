@@ -1,0 +1,56 @@
+name: Hugging Face Sync
+description: Sync your GitHub repository to Hugging Face Spaces.
+author: JacobLinCool <jacob@csie.cool>
+inputs:
+    user:
+        required: true
+        description: "The username (your username or organization name) of the Hugging Face."
+    space:
+        required: true
+        description: "The space name of the Hugging Face."
+    token:
+        required: true
+        description: "The Hugging Face access token."
+    github:
+        required: true
+        description: "The GitHub Actions token."
+    emoji:
+        required: false
+        description: "Space emoji (emoji-only character allowed)."
+        default: "🦄"
+    colorFrom:
+        required: false
+        description: "Color for Thumbnail gradient (red, yellow, green, blue, indigo, purple, pink, gray)."
+        default: "indigo"
+    colorTo:
+        required: false
+        description: "Color for Thumbnail gradient (red, yellow, green, blue, indigo, purple, pink, gray)."
+        default: "pink"
+    sdk:
+        required: false
+        description: "Can be either gradio, streamlit, docker, or static."
+        default: "gradio"
+    python_version:
+        required: false
+        description: "Any valid Python 3.x or 3.x.x version."
+    sdk_version:
+        required: false
+        description: "Specify the version of the selected SDK (Streamlit or Gradio). All versions of Gradio are supported. Streamlit versions are supported from 0.79.0 to 1.19.0."
+    app_file:
+        required: false
+        description: "Path to your main application file (which contains either gradio or streamlit Python code, or static html code). Path is relative to the root of the repository."
+    app_port:
+        required: false
+        description: "Port on which your application is running. Used only if sdk is docker."
+    base_path:
+        required: false
+        description: "For non-static spaces, initial url to render. Needs to start with /. For static spaces, use app_file instead."
+    fullWidth:
+        required: false
+        description: "Whether your Space is rendered inside a full-width (when true) or fixed-width column (ie. “container” CSS) inside the iframe. Defaults to false in gradio and streamlit, and to true for other sdks."
+    pinned:
+        required: false
+        description: "Whether the Space stays on top of your profile. Can be useful if you have a lot of Spaces so you and others can quickly see your best Space."
+runs:
+    using: "node16"
+    main: "dist/index.js"

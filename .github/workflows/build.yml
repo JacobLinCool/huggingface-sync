@@ -1,0 +1,37 @@
+name: Build
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    build:
+        name: Build
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write
+
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v3
+
+            - name: Setup PNPM
+              uses: pnpm/action-setup@v2.2.4
+              with:
+                  run_install: true
+
+            - name: Build All
+              run: pnpm build
+
+            - name: Remove dist from .gitignore
+              run: sed -i '/dist/d' '.gitignore'
+
+            - name: Deploy
+              uses: peaceiris/actions-gh-pages@v3
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: .
+                  publish_branch: v1
+                  force_orphan: true
+                  commit_message: "[skip ci] Deploy from GitHub Actions"
