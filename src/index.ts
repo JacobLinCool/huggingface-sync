@@ -44,6 +44,20 @@ async function main(): Promise<void> {
 			},
 		});
 
+		// Set git config
+		core.debug(`Setting git config ...`);
+		execSync(
+			`git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'`,
+			{
+				cwd: tmp_path,
+				stdio: "inherit",
+			},
+		);
+		execSync(`git config --global user.name 'github-actions[bot]'`, {
+			cwd: tmp_path,
+			stdio: "inherit",
+		});
+
 		// initialize the git repository and commit
 		core.debug(`Initializing git repository ...`);
 		execSync("git init -b main", { cwd: tmp_path, stdio: "inherit" });
