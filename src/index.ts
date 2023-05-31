@@ -49,7 +49,7 @@ async function main(): Promise<void> {
 		// add spaces config to README.md
 		core.debug(`Adding spaces config to README.md ...`);
 		let config = `---
-title: ${repo.data.name}
+title: ${repo.data.name.replace(/-/g, " ")}
 emoji: ${emoji}
 colorFrom: ${colorFrom}
 colorTo: ${colorTo}
