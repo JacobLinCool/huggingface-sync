@@ -1,6 +1,9 @@
 name: Hugging Face Sync
 description: Sync your GitHub repository to Hugging Face Spaces.
 author: JacobLinCool <jacob@csie.cool>
+branding:
+    icon: box
+    color: yellow
 inputs:
     user:
         required: true
