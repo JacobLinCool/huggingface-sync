@@ -33,11 +33,13 @@ async function main(): Promise<void> {
 
 		// clone the current directory to a temporary directory
 		const tmp_path = path.join(os.tmpdir(), ".space-sync");
-		core.debug(`Cloning ${repo.data.clone_url} to ${tmp_path} ...`);
+		core.debug(`Cloning to ${tmp_path} ...`);
 		fs.mkdirSync(tmp_path, { recursive: true });
 		fs.copySync(".", tmp_path, {
-			filter: (src, dest) => {
-				if (src === "." || src === "./.git") return false;
+			filter: (src) => {
+				if (src === ".git") {
+					return false;
+				}
 				return true;
 			},
 		});
