@@ -4,6 +4,11 @@
 	"license": "MIT",
 	"version": "0.0.0",
 	"description": "Sync your GitHub repository to Hugging Face Spaces.",
+	"files": [
+		"dist",
+		"action.yml",
+		"README.md"
+	],
 	"scripts": {
 		"prepare": "husky install",
 		"format": "prettier --write --ignore-path .gitignore **/*.{ts,json,yaml,yml}",
