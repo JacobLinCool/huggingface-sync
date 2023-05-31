@@ -103,6 +103,8 @@ sdk: ${sdk}
 		);
 
 		// Commit and push
+		core.debug(`Committing and pushing ...`);
+		execSync("git add .", { cwd: tmp_path, stdio: "inherit" });
 		execSync("git commit -m 'Sync to HuggingFace Spaces'", { cwd: tmp_path, stdio: "inherit" });
 		execSync(
 			`git push https://${user}:${token}@huggingface.co/spaces/${user}/${space}.git main -f`,
