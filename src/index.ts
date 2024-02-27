@@ -24,6 +24,7 @@ async function main(): Promise<void> {
 		const base_path: string = core.getInput("base_path");
 		const fullWidth: string = core.getInput("fullWidth");
 		const pinned: string = core.getInput("pinned");
+		const title: string = core.getInput("title");
 
 		core.debug(`Syncing ${user}/${space} with token ${token.slice(0, 5)}*** ...`);
 
@@ -65,7 +66,7 @@ async function main(): Promise<void> {
 		// add spaces config to README.md
 		core.debug(`Adding spaces config to README.md ...`);
 		let config = `---
-title: ${repo.data.name.replace(/-/g, " ")}
+title: ${title || repo.data.name.replace(/-/g, " ")}
 emoji: ${emoji}
 colorFrom: ${colorFrom}
 colorTo: ${colorTo}

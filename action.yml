@@ -54,6 +54,9 @@ inputs:
     pinned:
         required: false
         description: "Whether the Space stays on top of your profile. Can be useful if you have a lot of Spaces so you and others can quickly see your best Space."
+    title:
+        required: false
+        description: "Title of the Space."
 runs:
     using: "node16"
     main: "dist/index.js"
