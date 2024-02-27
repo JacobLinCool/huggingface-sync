@@ -1,9 +1,9 @@
-import os from "node:os";
-import path from "node:path";
-import { execSync } from "child_process";
-import fs from "fs-extra";
 import * as core from "@actions/core";
 import * as github from "@actions/github";
+import { execSync } from "child_process";
+import fs from "fs-extra";
+import os from "node:os";
+import path from "node:path";
 
 main();
 
