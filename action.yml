@@ -17,6 +17,9 @@ inputs:
     github:
         required: true
         description: "The GitHub Actions token."
+    title:
+        required: false
+        description: "Title of the Space."
     emoji:
         required: false
         description: "Space emoji (emoji-only character allowed)."
@@ -39,6 +42,12 @@ inputs:
     sdk_version:
         required: false
         description: "Specify the version of the selected SDK (Streamlit or Gradio). All versions of Gradio are supported. Streamlit versions are supported from 0.79.0 to 1.19.0."
+    suggested_hardware:
+        required: false
+        description: "Specify the suggested hardware on which this Space must be run. Useful for Spaces that are meant to be duplicated by other users. Setting this value will not automatically assign an hardware to this Space."
+    suggested_storage:
+        required: false
+        description: "Specify the suggested permanent storage on which this Space must be run. Useful for Spaces that are meant to be duplicated by other users. Setting this value will not automatically assign a permanent storage to this Space."
     app_file:
         required: false
         description: "Path to your main application file (which contains either gradio or streamlit Python code, or static html code). Path is relative to the root of the repository."
@@ -51,12 +60,36 @@ inputs:
     fullWidth:
         required: false
         description: "Whether your Space is rendered inside a full-width (when true) or fixed-width column (ie. “container” CSS) inside the iframe. Defaults to false in gradio and streamlit, and to true for other sdks."
+    header:
+        required: false
+        description: "Can be either mini or default. If header is set to mini the space will be displayed full-screen with a mini floating header."
+    short_description:
+        required: false
+        description: "A short description of the Space. This will be displayed in the Space's thumbnail. (60 chars max)"
+    models:
+        required: false
+        description: "HF model IDs (like gpt2 or deepset/roberta-base-squad2) used in the Space."
+    datasets:
+        required: false
+        description: "HF dataset IDs (like common_voice or oscar-corpus/OSCAR-2109) used in the Space."
+    tags:
+        required: false
+        description: "List of terms that describe your Space task or scope."
+    disable_embedding:
+        required: false
+        description: "Whether the Space iframe can be embedded in other websites. Defaults to false, i.e. Spaces can be embedded."
+    startup_duration_timeout:
+        required: false
+        description: "Set a custom startup duration timeout for your Space. This is the maximum time your Space is allowed to start before it times out and is flagged as unhealthy. Defaults to 30 minutes, but any valid duration (like 1h, 30m) is acceptable."
+    preload_from_hub:
+        required: false
+        description: "Specify a list of Hugging Face Hub models or other large files to be preloaded during the build time of your Space. This optimizes the startup time by having the files ready when your application starts. This is particularly useful for Spaces that rely on large models or datasets that would otherwise need to be downloaded at runtime."
     pinned:
         required: false
         description: "Whether the Space stays on top of your profile. Can be useful if you have a lot of Spaces so you and others can quickly see your best Space."
-    title:
+    configuration:
         required: false
-        description: "Title of the Space."
+        description: "Path to the configuration file for the Space. This file should be a valid YAML file without --- at the beginning and end. If specified, other configuration parameters will be ignored."
 runs:
     using: "node16"
     main: "dist/index.js"
