@@ -1,7 +1,7 @@
 import * as core from "@actions/core";
 import * as github from "@actions/github";
-import { execSync } from "child_process";
 import fs from "fs-extra";
+import { execSync } from "node:child_process";
 import os from "node:os";
 import path from "node:path";
 
@@ -9,22 +9,33 @@ main();
 
 async function main(): Promise<void> {
 	try {
-		const user: string = core.getInput("user");
-		const space: string = core.getInput("space");
-		const token: string = core.getInput("token");
-		const github_token: string = core.getInput("github");
-		const emoji: string = core.getInput("emoji");
-		const colorFrom: string = core.getInput("colorFrom");
-		const colorTo: string = core.getInput("colorTo");
-		const sdk: string = core.getInput("sdk");
-		const python_version: string = core.getInput("python_version");
-		const sdk_version: string = core.getInput("sdk_version");
-		const app_file: string = core.getInput("app_file");
-		const app_port: string = core.getInput("app_port");
-		const base_path: string = core.getInput("base_path");
-		const fullWidth: string = core.getInput("fullWidth");
-		const pinned: string = core.getInput("pinned");
-		const title: string = core.getInput("title");
+		const user = core.getInput("user");
+		const space = core.getInput("space");
+		const token = core.getInput("token");
+		const github_token = core.getInput("github");
+		const title = core.getInput("title");
+		const emoji = core.getInput("emoji");
+		const colorFrom = core.getInput("colorFrom");
+		const colorTo = core.getInput("colorTo");
+		const sdk = core.getInput("sdk");
+		const python_version = core.getInput("python_version");
+		const sdk_version = core.getInput("sdk_version");
+		const suggested_hardware = core.getInput("suggested_hardware");
+		const suggested_storage = core.getInput("suggested_storage");
+		const app_file = core.getInput("app_file");
+		const app_port = core.getInput("app_port");
+		const base_path = core.getInput("base_path");
+		const fullWidth = core.getInput("fullWidth");
+		const header = core.getInput("header");
+		const short_description = core.getInput("short_description");
+		const models = core.getInput("models");
+		const datasets = core.getInput("datasets");
+		const tags = core.getInput("tags");
+		const disable_embedding = core.getInput("disable_embedding");
+		const startup_duration_timeout = core.getInput("startup_duration_timeout");
+		const preload_from_hub = core.getInput("preload_from_hub");
+		const pinned = core.getInput("pinned");
+		const configuration = core.getInput("configuration");
 
 		core.debug(`Syncing ${user}/${space} with token ${token.slice(0, 5)}*** ...`);
 
@@ -65,36 +76,77 @@ async function main(): Promise<void> {
 
 		// add spaces config to README.md
 		core.debug(`Adding spaces config to README.md ...`);
-		let config = `---
-title: ${title || repo.data.name.replace(/-/g, " ")}
+		let config = "---\n";
+		if (configuration) {
+			config += fs.readFileSync(configuration, "utf-8");
+		} else {
+			config += `title: ${title || repo.data.name.replace(/-/g, " ")}
 emoji: ${emoji}
 colorFrom: ${colorFrom}
 colorTo: ${colorTo}
 sdk: ${sdk}
 `;
-		if (python_version) {
-			config += `python_version: ${python_version}\n`;
-		}
-		if (sdk_version) {
-			config += `sdk_version: ${sdk_version}\n`;
-		}
-		if (app_file) {
-			config += `app_file: ${app_file}\n`;
-		}
-		if (app_port) {
-			config += `app_port: ${app_port}\n`;
-		}
-		if (base_path) {
-			config += `base_path: ${base_path}\n`;
-		}
-		if (fullWidth) {
-			config += `fullWidth: ${fullWidth}\n`;
-		}
-		if (pinned) {
-			config += `pinned: ${pinned}\n`;
-		}
-		if (repo.data.topics?.length) {
-			config += `tags: [${repo.data.topics.map((topic) => `"${topic}"`).join(", ")}]\n`;
+			if (python_version) {
+				config += `python_version: ${python_version}\n`;
+			}
+			if (sdk_version) {
+				config += `sdk_version: ${sdk_version}\n`;
+			}
+			if (suggested_hardware) {
+				config += `suggested_hardware: ${suggested_hardware}\n`;
+			}
+			if (suggested_storage) {
+				config += `suggested_storage: ${suggested_storage}\n`;
+			}
+			if (app_file) {
+				config += `app_file: ${app_file}\n`;
+			}
+			if (app_port) {
+				config += `app_port: ${app_port}\n`;
+			}
+			if (base_path) {
+				config += `base_path: ${base_path}\n`;
+			}
+			if (fullWidth) {
+				config += `fullWidth: ${fullWidth}\n`;
+			}
+			if (header) {
+				config += `header: ${header}\n`;
+			}
+			const short_desc =
+				short_description ||
+				(repo.data.description
+					? repo.data.description.length > 60
+						? repo.data.description.slice(0, 57) + "..."
+						: repo.data.description
+					: "");
+			if (short_desc) {
+				config += `short_description: ${short_desc}\n`;
+			}
+			if (models) {
+				config += `models: ${models}\n`;
+			}
+			if (datasets) {
+				config += `datasets: ${datasets}\n`;
+			}
+			if (tags || repo.data.topics?.length) {
+				config += `tags: ${tags || `[ ${repo.data.topics?.map((t) => `"${t}"`).join(",")} ]`}\n`;
+			}
+			if (disable_embedding) {
+				config += `disable_embedding: ${disable_embedding}\n`;
+			}
+			if (startup_duration_timeout) {
+				config += `startup_duration_timeout: ${startup_duration_timeout}\n`;
+			}
+			if (preload_from_hub) {
+				config += `preload_from_hub: ${preload_from_hub}\n`;
+			}
+			if (pinned) {
+				config += `pinned: ${pinned}\n`;
+			}
+			if (repo.data.topics?.length) {
+				config += `tags: [${repo.data.topics.map((topic) => `"${topic}"`).join(", ")}]\n`;
+			}
 		}
 		config += `---\n\n`;
 
