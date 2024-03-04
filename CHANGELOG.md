@@ -1,5 +1,13 @@
 # huggingface-sync
 
+## 1.2.0
+
+### Minor Changes
+
+- [#19](https://github.com/JacobLinCool/huggingface-sync/pull/19) [`9eecd40`](https://github.com/JacobLinCool/huggingface-sync/commit/9eecd40ecdef562141110e5cbd04db2d637efba0) Thanks [@JacobLinCool](https://github.com/JacobLinCool)! - Support almost all space configuration parameters
+
+- [#19](https://github.com/JacobLinCool/huggingface-sync/pull/19) [`9eecd40`](https://github.com/JacobLinCool/huggingface-sync/commit/9eecd40ecdef562141110e5cbd04db2d637efba0) Thanks [@JacobLinCool](https://github.com/JacobLinCool)! - New `configuration` input to configure space through a YAML file
+
 ## 1.1.0
 
 ### Minor Changes
