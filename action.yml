@@ -91,5 +91,5 @@ inputs:
         required: false
         description: "Path to the configuration file for the Space. This file should be a valid YAML file without --- at the beginning and end. If specified, other configuration parameters will be ignored."
 runs:
-    using: "node16"
+    using: "node20"
     main: "dist/index.js"
