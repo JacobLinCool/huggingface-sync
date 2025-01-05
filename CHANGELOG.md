@@ -1,5 +1,15 @@
 # huggingface-sync
 
+## 1.3.0
+
+### Minor Changes
+
+- [#31](https://github.com/JacobLinCool/huggingface-sync/pull/31) [`29f024b`](https://github.com/JacobLinCool/huggingface-sync/commit/29f024b9cadfbeb9fee18b053b8c3dbd9a709707) Thanks [@JacobLinCool](https://github.com/JacobLinCool)! - Add repo url to commit message
+
+### Patch Changes
+
+- [#31](https://github.com/JacobLinCool/huggingface-sync/pull/31) [`178df5d`](https://github.com/JacobLinCool/huggingface-sync/commit/178df5d060f1bfff89246d5af76e992c8c7fa802) Thanks [@JacobLinCool](https://github.com/JacobLinCool)! - Upgrade deps
+
 ## 1.2.0
 
 ### Minor Changes
