@@ -158,7 +158,12 @@ sdk: ${sdk}
 		// Commit and push
 		core.debug(`Committing and pushing ...`);
 		execSync("git add .", { cwd: tmp_path, stdio: "inherit" });
-		execSync("git commit -m 'Sync to HuggingFace Spaces'", { cwd: tmp_path, stdio: "inherit" });
+		const repoUrl = repo.data.html_url;
+		const truncatedUrl = repoUrl.length > 60 ? repoUrl.slice(0, 57) + "..." : repoUrl;
+		execSync(`git commit -m 'Sync from ${truncatedUrl}'`, {
+			cwd: tmp_path,
+			stdio: "inherit",
+		});
 		execSync(
 			`git push https://${user}:${token}@huggingface.co/spaces/${user}/${space}.git main -f`,
 			{ cwd: tmp_path, stdio: "inherit" },
