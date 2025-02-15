@@ -129,9 +129,6 @@ sdk: ${sdk}
 			if (datasets) {
 				config += `datasets: ${datasets}\n`;
 			}
-			if (tags || repo.data.topics?.length) {
-				config += `tags: ${tags || `[ ${repo.data.topics?.map((t) => `"${t}"`).join(",")} ]`}\n`;
-			}
 			if (disable_embedding) {
 				config += `disable_embedding: ${disable_embedding}\n`;
 			}
@@ -144,8 +141,8 @@ sdk: ${sdk}
 			if (pinned) {
 				config += `pinned: ${pinned}\n`;
 			}
-			if (repo.data.topics?.length) {
-				config += `tags: [${repo.data.topics.map((topic) => `"${topic}"`).join(", ")}]\n`;
+			if (tags || repo.data.topics?.length) {
+				config += `tags: ${tags || `[ ${repo.data.topics?.map((t) => `"${t}"`).join(",")} ]`}\n`;
 			}
 		}
 		config += `---\n\n`;
