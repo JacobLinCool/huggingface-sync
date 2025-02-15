@@ -1,5 +1,11 @@
 # huggingface-sync
 
+## 1.3.1
+
+### Patch Changes
+
+- [`a7ec1aa`](https://github.com/JacobLinCool/huggingface-sync/commit/a7ec1aa747cbfc3f7966fdd7e63fd5c497b524a3) Thanks [@JacobLinCool](https://github.com/JacobLinCool)! - Fix duplicated tags
+
 ## 1.3.0
 
 ### Minor Changes
