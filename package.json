@@ -47,7 +47,7 @@
 		"url": "https://github.com/JacobLinCool/huggingface-sync/issues"
 	},
 	"homepage": "https://jacoblincool.github.io/huggingface-sync",
-	"packageManager": "pnpm@9.15.2",
+	"packageManager": "pnpm@9.15.9",
 	"dependencies": {
 		"@actions/core": "^1.11.1",
 		"@actions/github": "^6.0.0",
