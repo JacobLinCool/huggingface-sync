@@ -142,7 +142,7 @@ sdk: ${sdk}
 				config += `pinned: ${pinned}\n`;
 			}
 			if (tags || repo.data.topics?.length) {
-				config += `tags: ${tags || `[ ${repo.data.topics?.map((t) => `"${t}"`).join(",")} ]`}\n`;
+				config += `tags: ${tags || `[ ${repo.data.topics?.map((t: string) => `"${t}"`).join(",")} ]`}\n`;
 			}
 		}
 		config += `---\n\n`;
