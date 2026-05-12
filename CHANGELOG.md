@@ -1,5 +1,11 @@
 # huggingface-sync
 
+## 1.4.0
+
+### Minor Changes
+
+- [#45](https://github.com/JacobLinCool/huggingface-sync/pull/45) [`d4a3500`](https://github.com/JacobLinCool/huggingface-sync/commit/d4a3500ec4ac32dc613371b24881a57400d75661) Thanks [@JacobLinCool](https://github.com/JacobLinCool)! - Upgrade to Node.js 24 runtime to address the deprecation of Node.js 20 in GitHub Actions, and bump dependencies (including `@actions/core`, `@actions/github`) to the latest versions.
+
 ## 1.3.1
 
 ### Patch Changes
